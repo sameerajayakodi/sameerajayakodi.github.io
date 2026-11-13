@@ -1,168 +1,176 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-  
-  --color-sophisticated-bg: #080808;
-  --color-sophisticated-accent: #d4d4d8;
-  --color-sophisticated-muted: #52525b;
-  --color-sophisticated-border: rgba(255,255,255,0.1);
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", "Times New Roman", serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
 
-  --animate-fadeIn: fadeIn 0.4s ease-out forwards;
-  --animate-scaleUp: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  --animate-slideInMessage: slideInMessage 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  --animate-shimmer: shimmer 2.5s ease-in-out infinite;
-  --animate-pulseGlow: pulseGlow 2s ease-in-out infinite;
-  --animate-pulseRing: pulseRing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  --animate-chipSlideIn: chipSlideIn 0.3s ease-out forwards;
-  --animate-chatOpen: chatOpen 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  --animate-chatClose: chatClose 0.25s ease-in forwards;
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes scaleUp {
-    from {
-      opacity: 0;
-      transform: scale(0.95) translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-  }
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
 
-  @keyframes slideInMessage {
-    from {
-      opacity: 0;
-      transform: translateY(12px) scale(0.97);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-  @keyframes shimmer {
-    0%, 100% {
-      background-position: -200% center;
-    }
-    50% {
-      background-position: 200% center;
-    }
-  }
+:root {
+  --bg: #f3f1ec;
+  --bg-2: #ebe8e1;
+  --surface: #fbfaf7;
+  --ink: #0e0e0f;
+  --muted: #5f5e5a;
+  --faint: #9a9892;
+  --line: rgba(14, 14, 15, 0.12);
+  --accent: #e0481c;
+  --accent-soft: rgba(224, 72, 28, 0.12);
+  --grain-opacity: 0.05;
+  color-scheme: light;
+}
 
-  @keyframes pulseGlow {
-    0%, 100% {
-      box-shadow: 0 0 4px rgba(16, 185, 129, 0.3);
-    }
-    50% {
-      box-shadow: 0 0 16px rgba(16, 185, 129, 0.6), 0 0 32px rgba(16, 185, 129, 0.2);
-    }
-  }
+.dark {
+  --bg: #0a0a0b;
+  --bg-2: #111113;
+  --surface: #151517;
+  --ink: #eeece6;
+  --muted: #9a9993;
+  --faint: #5c5b57;
+  --line: rgba(238, 236, 230, 0.1);
+  --accent: #ff6b3d;
+  --accent-soft: rgba(255, 107, 61, 0.14);
+  --grain-opacity: 0.06;
+  color-scheme: dark;
+}
 
-  @keyframes pulseRing {
-    0% {
-      transform: scale(1);
-      opacity: 0.6;
-    }
-    100% {
-      transform: scale(1.8);
-      opacity: 0;
-    }
-  }
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
 
-  @keyframes chipSlideIn {
-    from {
-      opacity: 0;
-      transform: translateY(8px) scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
 
-  @keyframes chatOpen {
-    from {
-      opacity: 0;
-      transform: scale(0.88) translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-  }
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
 
-  @keyframes chatClose {
-    from {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-    to {
-      opacity: 0;
-      transform: scale(0.88) translateY(20px);
-    }
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
   }
 }
 
-/* Sophisticated Dark global scrollbar and inputs styling */
-.dark ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-.dark ::-webkit-scrollbar-track {
-  background: #080808;
-}
-.dark ::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.1);
-  border-radius: 4px;
-}
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255,255,255,0.2);
+/* Film grain over everything */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: -50%;
+  z-index: 60;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: grain 8s steps(10) infinite;
 }
 
-/* Chat panel scrollbar */
-.chat-scrollbar::-webkit-scrollbar {
-  width: 5px;
-}
-.chat-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-.chat-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.08);
-  border-radius: 10px;
-}
-.dark .chat-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.08);
-}
-.chat-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(0,0,0,0.15);
-}
-.dark .chat-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255,255,255,0.15);
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  30% { transform: translate(3%, -15%); }
+  50% { transform: translate(12%, 9%); }
+  70% { transform: translate(9%, 4%); }
+  90% { transform: translate(-1%, 7%); }
 }
 
-/* Chat header shimmer gradient overlay */
-.chat-header-shimmer {
-  background: linear-gradient(
-    110deg,
-    transparent 25%,
-    rgba(255,255,255,0.08) 37%,
-    transparent 50%
-  );
-  background-size: 200% 100%;
+/* Dot grid used behind the hero */
+.dot-grid {
+  background-image: radial-gradient(circle at 1px 1px, var(--line) 1px, transparent 0);
+  background-size: 28px 28px;
 }
 
+.serif-em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Infinite marquee */
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.spin-slow {
+  animation: spin 22s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Line-draw for project art */
+.draw {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: draw 3.2s var(--ease-out-expo) forwards;
+}
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.pulse-dot {
+  animation: pulse-dot 2.4s ease-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+@keyframes pulse-dot {
+  0% { transform: scale(1); opacity: 0.55; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+
+.float-y {
+  animation: float-y 6s ease-in-out infinite;
+}
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.dash-flow {
+  stroke-dasharray: 4 6;
+  animation: dash-flow 1.6s linear infinite;
+}
+@keyframes dash-flow {
+  to { stroke-dashoffset: -20; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .grain, .marquee-track, .spin-slow, .pulse-dot, .float-y, .dash-flow {
+    animation: none !important;
+  }
+  .draw {
+    animation: none !important;
+    stroke-dashoffset: 0;
+  }
+}
